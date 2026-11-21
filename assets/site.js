@@ -43,6 +43,19 @@
     $('#plate-full').textContent = `${s.line}. Come in and see the shop.`;
     $('#today-line').textContent = s.line;
     $('#board-open').textContent = s.board;
+    paintLight();
+  }
+
+  /* After closing the front goes dark and its windows are lit: from 4:30 until seven the next morning, on
+     Edgefield's clock. In daylight on a closed day it stays the daytime front, with Closed on the plate.
+     Adding ?light=dusk or ?light=day to the address shows either one at any hour. */
+  const SUNUP = 7 * 60;
+  function paintLight() {
+    const el = $('.front');
+    if (!el) return;
+    const { min } = shopClock();
+    const asked = new URLSearchParams(location.search).get('light');
+    el.classList.toggle('is-dusk', asked === 'dusk' || (asked !== 'day' && (min >= SHUTS || min < SUNUP)));
   }
   paintStatus();
   setInterval(paintStatus, 60000);

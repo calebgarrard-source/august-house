@@ -198,6 +198,26 @@ h3 { font: 500 clamp(1.5rem, 2.1vw, 1.85rem)/1.14 var(--f-display); text-wrap: b
 .leaf__plate { transition: opacity .3s var(--ease); }
 .walkin .leaf.is-moving .leaf__plate { opacity: 0; }
 
+/* after closing: the brick goes dark and the shop's light falls out of the windows.
+   The script sets .is-dusk from her closing time, 4:30, until seven the next morning, on Edgefield's clock.
+   Everything is the same drawing, re-lit: the wall and the sidewalk darken, a lamp's pool of light holds the painted
+   lettering, and the two photographs glow from their frames. The veil has the doorway cut out of it, like the wall. */
+.front.is-dusk { background: #2a1512; }
+.is-dusk .wall, .is-dusk .mortar { filter: brightness(.44) saturate(.9); }
+.is-dusk .stage::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background:
+  radial-gradient(ellipse calc(62 * var(--u)) calc(24 * var(--u)) at 50% calc(21.5 * var(--u)), rgba(255, 196, 120, .34), rgba(255, 196, 120, 0) 72%),
+  linear-gradient(rgba(14, 18, 44, .3), rgba(30, 14, 18, .16)); }
+.walkin .is-dusk .stage::after { -webkit-mask: linear-gradient(#000 0 0) no-repeat 50% calc(var(--top) + 8.5 * var(--u)) / calc(19 * var(--u)) calc(43 * var(--u)), linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) no-repeat 50% calc(var(--top) + 8.5 * var(--u)) / calc(19 * var(--u)) calc(43 * var(--u)), linear-gradient(#000 0 0); mask-composite: exclude; }
+.is-dusk .lettering { filter: drop-shadow(0 0 calc(2.8 * var(--u)) rgba(255, 190, 110, .28)); }
+.is-dusk .win { box-shadow: 0 0 0 1px rgba(0, 0, 0, .25), 0 0 calc(9 * var(--u)) calc(1.8 * var(--u)) rgba(255, 186, 104, .42); }
+.is-dusk .win img { filter: brightness(1.08) saturate(1.08) sepia(.12); }
+.is-dusk .win::after { background: transparent; }
+.is-dusk .sign { filter: brightness(.82); }
+.is-dusk .doorway { filter: brightness(.74) saturate(.9); }
+.is-dusk .transom { filter: brightness(1.45); }
+.is-dusk .planter { filter: brightness(.5) saturate(.8); }
+.is-dusk .walk { filter: brightness(.42) saturate(.7); }
+
 /* one entrance, on load: what hangs, sways once */
 @media (prefers-reduced-motion: no-preference) {
   .sign__board { animation: sway 2.4s var(--ease) .2s both; }
